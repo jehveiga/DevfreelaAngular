@@ -1,0 +1,68 @@
+.df-header{
+    height: var(--dv-header-size);
+    width: 100%;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
+.df-header >.wrapper{
+    max-width: var(--df-main-wrapper);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.df-header >.wrapper.-has-user{ 
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+/* Logo */
+.df-header >.wrapper >.logo-wrapper{
+    height: var(--dv-header-size);
+    padding: 16px 0;
+}
+
+.df-header >.wrapper >.logo-wrapper >.image{
+    height: 100%;
+}
+
+/* Usuario */
+.df-header >.wrapper >.user {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.df-header >.wrapper >.user >.info{
+    text-align: right;
+}
+
+.df-header >.wrapper >.user >.info >.name{
+    display: block;
+    font-weight: 800;
+    font-size: calc(var(--df-font-size-base) + 4px);
+    margin-bottom: 3px;
+}
+
+.df-header >.wrapper >.user >.info >.role{
+    font-size: calc(var(--df-font-size-base) + 2px); 
+}
+
+.df-header >.wrapper >.user >.photo-wrapper{
+    margin-left: 10px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--df-color-primary);
+    overflow: hidden;
+}
+
+.df-header >.wrapper >.user >.photo-wrapper >img{
+    height: 100%;
+    width: 100%;
+}
