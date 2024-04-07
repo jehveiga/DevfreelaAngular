@@ -9,12 +9,12 @@
     padding-bottom: 10px;
     width: 100%;
     margin-bottom: 32px;
-}
 
-.df-input:focus{
-    border-color: var(--df-color-primary);
-}
+    &:focus{
+      border-color: var(--df-color-primary);
+  }
 
-.df-input::placeholder{
+  &::placeholder{
     color: var(--df-color-gray-dark);
+}
 }
