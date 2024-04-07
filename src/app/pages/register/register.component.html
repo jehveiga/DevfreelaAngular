@@ -1,0 +1,77 @@
+<div class="df-login">
+  <div class="df-wrapper">
+    <header class="df-header">
+      <div class="wrapper">
+        <div class="image-wrapper">
+          <img
+            class="image"
+            src="assets/logo/devfreela.svg"
+            alt="Logo da Dev Freela"
+          />
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <form class="left" (submit)="cadastrar()" action="javascript:void(0)">
+        <h1 class="main-title">
+          <span class="up">Olá</span>
+          <span class="down">Vamos criar seu cadastro.</span>
+        </h1>
+
+        <div class="radio-buttons">
+          <h3 class="title">Qual o seu perfil?</h3>
+          <div class="buttons">
+            <label class="df-radio">
+              Dev
+              <input name="cargo" type="radio" checked />
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="df-radio">
+              Client
+              <input name="cargo" type="radio" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <input
+          id="fullName"
+          required
+          type="text"
+          class="df-input"
+          placeholder="Nome completo"
+        />
+        <input
+          id="birthDate"
+          required
+          type="date"
+          class="df-input"
+          placeholder="Data de nascimento"
+        />
+        <input
+          id="email"
+          required
+          type="email"
+          class="df-input"
+          placeholder="Email"
+        />
+        <input
+          id="password"
+          required
+          type="password"
+          class="df-input"
+          placeholder="Senha"
+        />
+
+        <button type="submit" class="df-button">Continuar</button>
+      </form>
+      <div class="right">
+        <img
+          class="image"
+          src="assets/image/bg-cubes.png"
+          alt="Fundo de decoração com 3 cubos com fundo gradient com multi cores"
+        />
+      </div>
+    </main>
+  </div>
+</div>
