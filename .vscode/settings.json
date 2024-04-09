@@ -7,5 +7,9 @@
         "angular-component": {
             "ngOnInit": true
         }
-    }
+    },
+    "cSpell.words": [
+        "Freela",
+        "João"
+    ]
 }

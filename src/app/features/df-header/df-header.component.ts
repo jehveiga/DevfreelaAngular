@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { IUser } from './interfaces/IUser';
 
 @Component({
   selector: 'df-header',
@@ -7,18 +8,19 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DfHeaderComponent implements OnInit {
+  user: IUser = {}; // undefined
+
   ngOnInit(): void {
     this.buildHeader();
   }
   buildHeader() {
     if (this.checkIfUserIsLogged()) {
-
-    } else {
-
+      this.user.name = localStorage.getItem('userName') || '';
+      this.user.role = localStorage.getItem('role') || '';
     }
   }
 
-  checkIfUserIsLogged() {
-    return localStorage.getItem("userName") && localStorage.getItem("role");
+  checkIfUserIsLogged(): boolean {
+    return localStorage.getItem('userName') !== null && localStorage.getItem('role') !== null;
   }
 }

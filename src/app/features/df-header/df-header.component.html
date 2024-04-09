@@ -1,18 +1,19 @@
+<!-- SIMPLES -->
 <header class="df-header">
-  <div class="wrapper -has-user">
+  <div class="wrapper" *ngIf="!checkIfUserIsLogged()">
+    <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
+  </div>
+
+  <!-- COMPLETO -->
+  <div class="wrapper -has-user" *ngIf="checkIfUserIsLogged()">
     <div class="div"></div>
-    <div class="logo-wrapper">
-      <img
-        class="image"
-        src="assets/logo/devfreela.svg"
-        alt="Logo da Dev Freela"
-      />
-    </div>
+
+    <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
 
     <div class="user">
       <div class="info">
-        <span id="name" class="name"></span>
-        <span id="role" class="role"></span>
+        <span class="name">{{ user.name }}</span>
+        <span class="role">{{ user.role }}</span>
       </div>
       <div class="photo-wrapper">
         <img
@@ -23,3 +24,14 @@
     </div>
   </div>
 </header>
+
+<!-- TEMPLATE - logo -->
+<ng-template #logoTemplate>
+  <div class="logo-wrapper">
+    <img
+      class="image"
+      src="assets/logo/devfreela.svg"
+      alt="Logo da Dev Freela"
+    />
+  </div>
+</ng-template>
