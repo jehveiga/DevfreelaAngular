@@ -1,6 +1,7 @@
 <div class="df-register">
   <df-wrapper>
     <form class="left" (submit)="cadastrar()" action="javascript:void(0)">
+      <div class="example-container"></div>
       <h1 class="main-title">
         <span class="up">Olá</span>
         <span class="down">Vamos criar seu cadastro.</span>
@@ -22,6 +23,7 @@
           </label>
         </div>
       </div>
+
       <input
         id="fullName"
         required
@@ -50,6 +52,21 @@
         class="df-input"
         placeholder="Senha"
       />
+
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          [formControl]="email"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        @if (email.invalid) {
+        <mat-error>{{ errorMessage }}</mat-error>
+        }
+      </mat-form-field>
+
       <df-button text="Continuar" />
     </form>
     <div class="right">
