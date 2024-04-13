@@ -1,7 +1,11 @@
 <div class="df-register">
   <df-wrapper>
-    <form class="left" (submit)="cadastrar()" action="javascript:void(0)">
-      <div class="example-container"></div>
+    <form
+      class="left"
+      (submit)="cadastrar()"
+      action="javascript:void(0)"
+      [formGroup]="registerForm"
+    >
       <h1 class="main-title">
         <span class="up">Olá</span>
         <span class="down">Vamos criar seu cadastro.</span>
@@ -12,59 +16,54 @@
         <div class="buttons">
           <label class="df-radio">
             Dev
-            <input name="cargo" type="radio" checked />
+            <input name="role" type="radio" (click)="toggleRole('dev')" />
             <span class="checkmark"></span>
           </label>
 
           <label class="df-radio">
             Client
-            <input name="cargo" type="radio" />
+            <input name="role" type="radio" (click)="toggleRole('cliente')" />
             <span class="checkmark"></span>
           </label>
         </div>
       </div>
-
-      <input
-        id="fullName"
-        required
-        type="text"
-        class="df-input"
-        placeholder="Nome completo"
-      />
-      <input
-        id="birthDate"
-        required
-        type="date"
-        class="df-input"
-        placeholder="Data de nascimento"
-      />
-      <input
-        id="email"
-        required
-        type="email"
-        class="df-input"
-        placeholder="Email"
-      />
-      <input
-        id="password"
-        required
-        type="password"
-        class="df-input"
-        placeholder="Senha"
-      />
+      <span class="role-invalid" *ngIf="isInvalid('role', 'required')">{{
+        msg.role
+      }}</span>
 
       <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input
-          matInput
-          placeholder="pat@example.com"
-          [formControl]="email"
-          (blur)="updateErrorMessage()"
-          required
-        />
-        @if (email.invalid) {
-        <mat-error>{{ errorMessage }}</mat-error>
-        }
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="fullName" />
+        <mat-error *ngIf="isInvalid('fullName', 'required')">{{
+          msg.required
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data de nascimento</mat-label>
+        <input type="date" matInput formControlName="birthDate" />
+        <mat-error *ngIf="isInvalid('birthDate', 'required')">{{
+          msg.required
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error *ngIf="isInvalid('email', 'required')">{{
+          msg.required
+        }}</mat-error>
+        <mat-error *ngIf="isInvalid('email', 'email')">{{
+          msg.email
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error *ngIf="isInvalid('password', 'required')">{{
+          msg.required
+        }}</mat-error>
       </mat-form-field>
 
       <df-button text="Continuar" />

@@ -261,10 +261,6 @@ $altTheme: (
   }
 }
 
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
-  color: var(--df-color-gray-dark) !important;
-}
-
-.mat-form-field{
+mat-form-field{
   width: 100%;
 }

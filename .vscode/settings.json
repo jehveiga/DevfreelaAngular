@@ -11,7 +11,9 @@
     "cSpell.words": [
         "Continuar",
         "Freela",
-        "João"
+        "inválido",
+        "João",
+        "obrigatório"
     ],
     "explorer.fileNesting.enabled": true, "explorer.fileNesting.patterns": {
       "*.component.ts": "${capture}.component.ts, ${capture}.component.html, ${capture}.component.scss, ${capture}.component.spec.ts"

@@ -20,6 +20,14 @@
         font-weight: 800;
         margin-bottom: 16px;
       }
+
+      > .role-invalid{
+        color: red;
+        display: inline-block;
+        margin-top: 15px;
+        font-weight: 300;
+        font-size: 12px;
+      }
     }
 
     > .main-title {
