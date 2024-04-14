@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 import { msg } from '../../shared/utils/msg';
 import { Validators, FormBuilder } from '@angular/forms';
-import { RegisterService } from '../../../services/register.service';
+import { RegisterService } from './services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,6 @@ import { RegisterService } from '../../../services/register.service';
 })
 export class RegisterComponent {
   msg = msg;
-  registerService = inject(RegisterService);
 
   registerForm: FormGroup = this.fb.group({
     role: ['', [Validators.required]],
@@ -25,7 +24,7 @@ export class RegisterComponent {
     password: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {
 
   }
 

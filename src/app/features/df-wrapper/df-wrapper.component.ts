@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'df-wrapper',
@@ -7,8 +6,6 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
   styleUrl: './df-wrapper.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DfWrapperComponent implements OnInit {
-
-  ngOnInit(): void { }
-
+export class DfWrapperComponent {
+  @Input() type: 'one-col' | 'two-col' = 'two-col';
 }
