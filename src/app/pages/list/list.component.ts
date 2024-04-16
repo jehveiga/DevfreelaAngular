@@ -1,6 +1,12 @@
+import { Observable, delay } from 'rxjs';
 import { IListItem } from './interfaces/IListItem';
-import { ChangeDetectionStrategy, Component, Injectable, type OnInit } from '@angular/core';
 import { ListService } from './services/list.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  type OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -8,54 +14,42 @@ import { ListService } from './services/list.service';
   styleUrl: './list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent implements OnInit {
-  list: IListItem[] = [];
 
-  constructor(private listService: ListService) { }
+export class ListComponent implements OnInit {
+  list$ = new Observable<IListItem[]>();
+  loadingTable: boolean = false;
+  private listService = inject(ListService);
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.getProjects();
+    this.obterMusicasCadastradas();
   }
 
-  getProjects() {
-    // Enviar para API
-    this.listService.getProjects().subscribe((projects: IListItem[]) => {
-      this.list = projects;
-      this.buildTable();
-    });
+  obterMusicasCadastradas() {
+    this.list$ = this.listService.getProjects();
   }
 
   buildTable() {
-    (document
-      .querySelector("#table_body") as any)
-      .innerHTML = "";
+    const idClient = localStorage.getItem('idClient');
 
-    const idClient = localStorage.getItem("idClient");
+    // this.list = this.list.filter(
+    //   (listItem: IListItem) => listItem.idClient === idClient
+    // );
 
-    this.list = this.list.filter((listItem: IListItem) => listItem.idClient === idClient);
-
-    this.list.forEach((listItem: IListItem) => {
-      let template = `
-        <div class="row">
-        <div class="title-description">
-          <h6 class="title">${listItem.title}</h6>
-          <p class="description">
-            ${listItem.description}
-          </p>
-        </div>
-        <div class="price">R$ ${listItem.totalCost}</div>
-        <div class="actions">
-          <span class="edit material-symbols-outlined" onclick="goToEdit(${listItem.id})"> edit </span>
-          <span class="delete material-symbols-outlined" onclick="deleteProject(${listItem.id})">delete</span>
-        </div>listItem
-      </div>
-      `;
-
-      (document
-        .querySelector("#table_body") as any)
-        .insertAdjacentHTML("beforeend", template);
-    })
   }
 
+  deleteProject(id: string = '0'): void {
+    // this.listService.deleteProject(id).subscribe(
+    //   (response) => {
+    //     this.list$ = this.list$.filter(
+    //       (listItem: IListItem) => listItem.id !== id
+    //     );
+    //     this.buildTable();
+    //   }
+    // );
+  }
+  goToEdit(arg0: string | undefined) {
+    throw new Error('Method not implemented.');
+  }
 }
-

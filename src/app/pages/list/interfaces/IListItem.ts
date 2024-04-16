@@ -1,7 +1,7 @@
 export interface IListItem {
-  title: string
-  description: string
-  totalCost: number
-  idClient: string
-  id?: string
+  description: string;
+  id?: string;
+  idClient: string;
+  title: string;
+  totalCost: number;
 }

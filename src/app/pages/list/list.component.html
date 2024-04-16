@@ -10,6 +10,10 @@
     </div>
 
     <div class="table-wrapper">
+      <!-- <div class="loading" *ngIf="loadingTable === false">
+        Carregando tabela!!!
+      </div> -->
+
       <div class="df-table">
         <div class="head">
           <div class="row">
@@ -18,7 +22,30 @@
             <div>Ações</div>
           </div>
         </div>
-        <div class="body" id="table_body"></div>
+        <div class="body">
+          <div class="row" *ngFor="let listItem of list$ | async">
+            <div class="title-description">
+              <h6 class="title">{{ listItem.title }}</h6>
+
+              <p class="description">{{ listItem.description }}</p>
+            </div>
+            <div class="price">R$ {{ listItem.totalCost }}</div>
+
+            <div class="actions">
+              <span
+                class="edit material-symbols-outlined"
+                (click)="goToEdit(listItem.id)"
+              >
+                edit
+              </span>
+              <span
+                class="delete material-symbols-outlined"
+                (click)="deleteProject(listItem.id)"
+                >delete</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </df-wrapper>

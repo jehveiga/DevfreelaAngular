@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { IListItem } from '../interfaces/IListItem';
 
@@ -8,10 +8,15 @@ import { IListItem } from '../interfaces/IListItem';
 })
 export class ListService {
   private readonly baseURL = environment.apiUrl;
+  private httpClient = inject(HttpClient);
 
+  constructor() { }
 
-  constructor(private http: HttpClient) { }
   getProjects() {
-    return this.http.get<IListItem[]>(`${this.baseURL}projects`)
+    return this.httpClient.get<IListItem[]>(`${this.baseURL}projects`)
+  }
+
+  deleteProject(id: string) {
+    return this.httpClient.delete(`${this.baseURL}projects${id}`)
   }
 }
