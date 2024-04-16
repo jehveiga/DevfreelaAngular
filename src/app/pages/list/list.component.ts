@@ -1,4 +1,4 @@
-import { Observable, delay } from 'rxjs';
+import { Observable, Subject, delay, take } from 'rxjs';
 import { IListItem } from './interfaces/IListItem';
 import { ListService } from './services/list.service';
 import {
@@ -14,7 +14,6 @@ import {
   styleUrl: './list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class ListComponent implements OnInit {
   list$ = new Observable<IListItem[]>();
   loadingTable: boolean = false;
@@ -23,20 +22,15 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.obterMusicasCadastradas();
+    this.loadItemsList();
   }
 
-  obterMusicasCadastradas() {
-    this.list$ = this.listService.getProjects();
-  }
-
-  buildTable() {
-    const idClient = localStorage.getItem('idClient');
-
-    // this.list = this.list.filter(
-    //   (listItem: IListItem) => listItem.idClient === idClient
-    // );
-
+  loadItemsList() {
+    this.listService.getProjects()
+      .subscribe((projects) => {
+        this.list$ = projects;
+      })
+      .unsubscribe();
   }
 
   deleteProject(id: string = '0'): void {

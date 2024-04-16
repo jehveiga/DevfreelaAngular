@@ -1,3 +1,4 @@
+import { Observable, delay, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
@@ -13,7 +14,7 @@ export class ListService {
   constructor() { }
 
   getProjects() {
-    return this.httpClient.get<IListItem[]>(`${this.baseURL}projects`)
+    return of(this.httpClient.get<IListItem[]>(`${this.baseURL}projects`));
   }
 
   deleteProject(id: string) {
