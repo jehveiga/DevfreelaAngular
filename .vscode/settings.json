@@ -5,7 +5,8 @@
             "style": "scss"
         },
         "angular-component": {
-            "ngOnInit": true
+            "ngOnInit": true,
+            "skipPathSubfolder": true
         }
     },
     "cSpell.words": [
