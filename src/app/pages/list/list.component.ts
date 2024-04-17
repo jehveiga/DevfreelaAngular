@@ -29,6 +29,7 @@ export class ListComponent implements OnInit {
     this.listService.getProjects()
       .subscribe((projects) => {
         this.list$ = projects;
+        this.loadingTable = true;
       })
       .unsubscribe();
   }
