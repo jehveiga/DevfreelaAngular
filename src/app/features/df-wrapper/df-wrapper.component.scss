@@ -2,7 +2,7 @@
   max-width: var(--df-main-wrapper);
   margin: 0 auto;
 
-  > .main-content {
+   .main-content {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -12,7 +12,7 @@
       grid-template-columns: 1fr;
     }
 
-    > .back-btn {
+     .back-btn {
       position: fixed;
       top: calc(var(--dv-header-size) + 40px);
       font-size: calc(var(--df-font-size-base) + 30px);
@@ -21,15 +21,15 @@
       text-decoration: none;
     }
 
-    > .left {
+     .left {
       padding-top: 48px;
     }
 
-    > .right {
+     .right {
       height: calc(100vh - var(--dv-header-size));
       position: relative;
 
-      > .image {
+       .image {
         position: absolute;
         height: 100%;
         top: 0;

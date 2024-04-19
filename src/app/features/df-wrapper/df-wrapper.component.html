@@ -1,6 +1,14 @@
 <div class="df-wrapper">
   <df-header></df-header>
   <main class="main-content" [class.-one-col]="type === 'one-col'">
+    <a
+      *ngIf="back !== ''"
+      class="back-btn material-symbols-outlined"
+      (click)="redirectTo(back)"
+    >
+      arrow_back_ios
+    </a>
+
     <ng-content></ng-content>
   </main>
 </div>

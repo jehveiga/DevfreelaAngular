@@ -1,12 +1,13 @@
-import { Observable, Subject, delay, take } from 'rxjs';
-import { IListItem } from './interfaces/IListItem';
-import { ListService } from './services/list.service';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   type OnInit,
 } from '@angular/core';
+import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IListItem } from './interfaces/IListItem';
+import { ListService } from './services/list.service';
 
 @Component({
   selector: 'app-list',
@@ -17,6 +18,9 @@ import {
 export class ListComponent implements OnInit {
   list$ = new Observable<IListItem[]>();
   loadingTable: boolean = false;
+
+  // Injeção de dependencia
+  router = inject(Router);
   private listService = inject(ListService);
 
   constructor() { }
@@ -44,7 +48,17 @@ export class ListComponent implements OnInit {
     //   }
     // );
   }
-  goToEdit(arg0: string | undefined) {
-    throw new Error('Method not implemented.');
+
+  redirectTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
+  redirectToWithParams(url: string, id: string) {
+    const dataParams: NavigationBehaviorOptions = {
+      state: {
+        id: id
+      }
+    }
+    this.router.navigate([`/${url}`], dataParams);
   }
 }

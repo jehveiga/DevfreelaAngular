@@ -14,9 +14,13 @@
         "Freela",
         "inválido",
         "João",
-        "obrigatório"
+        "obrigatório",
+        "Salvar"
     ],
     "explorer.fileNesting.enabled": true, "explorer.fileNesting.patterns": {
       "*.component.ts": "${capture}.component.ts, ${capture}.component.html, ${capture}.component.scss, ${capture}.component.spec.ts"
+    },
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
     }
 }

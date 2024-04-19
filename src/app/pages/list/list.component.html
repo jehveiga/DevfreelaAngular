@@ -3,10 +3,10 @@
     <div class="title-button">
       <h1 class="title">Projetos</h1>
       <div class="button-wrapper">
-        <!-- <a href="project-create-edit.html" class="df-button -small"
-          >Novo Projeto</a
-        > -->
-        <df-button text="Novo Projeto"></df-button>
+        <df-button
+          text="Novo Projeto"
+          (click)="redirectTo('create-edit')"
+        ></df-button>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
               <div class="actions">
                 <span
                   class="edit material-symbols-outlined"
-                  (click)="goToEdit(listItem.id)"
+                  (click)="redirectToWithParams('create-edit', listItem.id)"
                 >
                   edit
                 </span>

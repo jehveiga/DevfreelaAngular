@@ -3,8 +3,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import Swal from 'sweetalert2';
 
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { msg } from '../../shared/utils/msg';
-import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterService } from './services/register.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { RegisterService } from './services/register.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
+  router = inject(Router);
   msg = msg;
 
   registerForm: FormGroup = this.fb.group({
@@ -52,7 +54,7 @@ export class RegisterComponent {
               );
               localStorage.setItem('idClient', response.id);
 
-              window.location.href = 'list.html';
+              this.router.navigateByUrl('list')
             }
           });
         });
@@ -60,29 +62,6 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
     }
   }
-
-  // Enviar para API
-  // fetch('https://660b4ff2ccda4cbc75dca830.mockapi.io/api/users', {
-  //   method: 'POST',
-  //   body: JSON.stringify(payload),
-  //     headers: {
-  // 'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  // .then((response) => {
-
-  // });
-
-  // checkIfAnyRoleIsChecked() {
-  //   let counter = 0;
-  //   let roleList = document.getElementsByName('cargo');
-
-  //   for (let radioButton of roleList) {
-  //     if (radioButton.checked) counter++;
-  //   }
-
-  //   return counter !== roleList.length;
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.registerForm.get(inputName);

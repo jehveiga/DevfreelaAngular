@@ -1,3 +1,49 @@
 <div class="df-create-edit">
-  <df-wrapper> Conteudo do create edit </df-wrapper>
+  <df-wrapper back="list">
+    <form
+      class="left"
+      (submit)="createOrEdit()"
+      [formGroup]="projectCreateEditForm"
+    >
+      <h1 class="main-title">{{ title }}</h1>
+
+      <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" />
+        <mat-error *ngIf="isInvalid('title', 'required')">{{
+          msg.required
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Total do custo</mat-label>
+        <input
+          matInput
+          formControlName="totalCost"
+          mask="separator.2"
+          thousandSeparator=","
+        />
+        <mat-error *ngIf="isInvalid('totalCost', 'required')">{{
+          msg.required
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="isInvalid('description', 'required')">{{
+          msg.required
+        }}</mat-error>
+      </mat-form-field>
+
+      <df-button [text]="actionButtonText"></df-button>
+    </form>
+    <div class="right">
+      <img
+        class="image"
+        src="assets/image/bg-float-cubes.png"
+        alt="Fundo de decoração com 3 cubos com fundo gradient com multi cores"
+      />
+    </div>
+  </df-wrapper>
 </div>
