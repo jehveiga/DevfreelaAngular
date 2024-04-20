@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, type OnInit } from '@angula
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IProject } from '../../shared/interfaces/IProject';
+import { Helpers } from '../../shared/utils/helpers';
 import { msg } from '../../shared/utils/msg';
 import { CreateEditService } from './services/create-edit.service';
 
@@ -16,6 +17,7 @@ export class CreateEditComponent implements OnInit {
   id: string;
   screenType: 'edit' | 'create';
   msg = msg;
+  helpers = Helpers;
 
   router = inject(Router);
   createEditService = inject(CreateEditService);
@@ -42,8 +44,9 @@ export class CreateEditComponent implements OnInit {
 
   createOrEdit() {
     if (this.projectCreateEditForm.valid) {
-
+      console.log(this.projectCreateEditForm.value);
       let payload: IProject | any = this.projectCreateEditForm.value;
+      console.log(payload);
       payload.idClient = localStorage.getItem("idClient") ?? '0';
 
       if (this.screenType === 'create') {
@@ -77,13 +80,13 @@ export class CreateEditComponent implements OnInit {
 
   fillInputs() {
     if (this.screenType === "edit") {
-      fetch(`https://660b4ff2ccda4cbc75dca830.mockapi.io/api/projects/${this.id}`)
-        .then((response) => response.json())
-        .then((project) => {
+      this.createEditService.getProjectById(this.id).subscribe(
+        (project: IProject) => {
+          console.log(this.projectCreateEditForm.value);
           this.projectCreateEditForm.patchValue({
             title: project.title,
             description: project.description,
-            totalCost: project.totalCost
+            totalCost: String(project.totalCost)
           })
         });
     };
@@ -97,18 +100,6 @@ export class CreateEditComponent implements OnInit {
       this.title = "Editar projeto";
       this.actionButtonText = "Salvar";
     }
-  }
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.projectCreateEditForm.get(inputName);
-    if (formControl.error != null) {
-      return (
-        formControl.errors[validatorName] &&
-        this.projectCreateEditForm.get(inputName)?.touched
-      );
-    }
-
-    return;
   }
 
 }

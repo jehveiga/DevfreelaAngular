@@ -1,6 +1,6 @@
-import { Observable, delay, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { IListItem } from '../interfaces/IListItem';
 
@@ -18,6 +18,6 @@ export class ListService {
   }
 
   deleteProject(id: string) {
-    return this.httpClient.delete(`${this.baseURL}projects${id}`)
+    return this.httpClient.delete(`${this.baseURL}projects/${id}`)
   }
 }

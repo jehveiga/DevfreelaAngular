@@ -14,12 +14,16 @@ export class CreateEditService {
   private readonly baseURL = environment.apiUrl;
   private httpClient = inject(HttpClient);
 
+  getProjectById(id: string) {
+    return this.httpClient.get<IProject>(`${this.baseURL}projects/${id}`);
+  }
+
   createProject(project: IProject) {
-    return of(this.httpClient.post(`${this.baseURL}/projects`, project));
+    return of(this.httpClient.post(`${this.baseURL}projects`, project));
   }
 
   editProject(project: IProject, id: string) {
-    return of(this.httpClient.put(`${this.baseURL}/projects${id}`, project));
+    return this.httpClient.put(`${this.baseURL}projects/${id}`, project);
   }
 
 }

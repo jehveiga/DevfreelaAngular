@@ -21,6 +21,6 @@
       "*.component.ts": "${capture}.component.ts, ${capture}.component.html, ${capture}.component.scss, ${capture}.component.spec.ts"
     },
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
+        "source.organizeImports": "explicit"
     }
 }

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Helpers } from '../../shared/utils/helpers';
 import { msg } from '../../shared/utils/msg';
 import { RegisterService } from './services/register.service';
 
@@ -17,6 +18,7 @@ import { RegisterService } from './services/register.service';
 export class RegisterComponent {
   router = inject(Router);
   msg = msg;
+  helpers = Helpers;
 
   registerForm: FormGroup = this.fb.group({
     role: ['', [Validators.required]],
@@ -61,17 +63,5 @@ export class RegisterComponent {
     } else {
       this.registerForm.markAllAsTouched();
     }
-  }
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.registerForm.get(inputName);
-    if (formControl.error != null) {
-      return (
-        formControl.errors[validatorName] &&
-        this.registerForm.get(inputName)?.touched
-      );
-    }
-
-    return;
   }
 }

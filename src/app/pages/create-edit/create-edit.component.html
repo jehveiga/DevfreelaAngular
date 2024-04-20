@@ -10,9 +10,10 @@
       <mat-form-field>
         <mat-label>Título</mat-label>
         <input matInput formControlName="title" />
-        <mat-error *ngIf="isInvalid('title', 'required')">{{
-          msg.required
-        }}</mat-error>
+        <mat-error
+          *ngIf="helpers.isInvalid(projectCreateEditForm, 'title', 'required')"
+          >{{ msg.required }}</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field>
@@ -23,17 +24,19 @@
           mask="separator.2"
           thousandSeparator=","
         />
-        <mat-error *ngIf="isInvalid('totalCost', 'required')">{{
-          msg.required
-        }}</mat-error>
+        <mat-error
+          *ngIf="helpers.isInvalid(projectCreateEditForm, 'totalCost', 'required')"
+          >{{ msg.required }}</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Descrição</mat-label>
         <textarea matInput formControlName="description"></textarea>
-        <mat-error *ngIf="isInvalid('description', 'required')">{{
-          msg.required
-        }}</mat-error>
+        <mat-error
+          *ngIf="helpers.isInvalid(projectCreateEditForm, 'description', 'required')"
+          >{{ msg.required }}</mat-error
+        >
       </mat-form-field>
 
       <df-button [text]="actionButtonText"></df-button>

@@ -39,14 +39,12 @@ export class ListComponent implements OnInit {
   }
 
   deleteProject(id: string = '0'): void {
-    // this.listService.deleteProject(id).subscribe(
-    //   (response) => {
-    //     this.list$ = this.list$.filter(
-    //       (listItem: IListItem) => listItem.id !== id
-    //     );
-    //     this.buildTable();
-    //   }
-    // );
+    this.listService.deleteProject(id).subscribe(
+      (response) => {
+        this.list$ = this.list$
+        console.log(response);
+      }
+    );
   }
 
   redirectTo(url: string) {
